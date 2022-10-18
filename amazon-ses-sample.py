@@ -7,7 +7,7 @@ SENDER = "Sender Name <josh@captainapp.co.uk>"
 
 # Replace recipient@example.com with a "To" address. If your account 
 # is still in the sandbox, this address must be verified.
-RECIPIENT = "dupput@gmail.com"
+RECIPIENT = "josh5485@me.com"
 
 # Specify a configuration set. If you do not want to use a configuration
 # set, comment the following variable, and the 
@@ -29,12 +29,13 @@ BODY_TEXT = ("Amazon SES Test (Python)\r\n"
 # The HTML body of the email.
 BODY_HTML = """<html>
 <head></head>
-<body>
-  <h1>Amazon SES Test (SDK for Python)</h1>
-  <p>This email was sent with
-    <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
-    <a href='https://aws.amazon.com/sdk-for-python/'>
-      AWS SDK for Python (Boto)</a>.</p>
+<div style="background-color: #f5f5f5; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px;">
+        <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: #000; font-size: 24px; font-weight: 600; margin: 0;">Captain App Report</h1>
+        </div>
+    </div>
+</div>  
 </body>
 </html>
             """            
