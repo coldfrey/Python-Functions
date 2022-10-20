@@ -1,13 +1,13 @@
 import requests
 import json
-
+import os
 
 authurl = "https://uncommon.commercelayer.io/oauth/token?"
 
 payload = json.dumps({
   "grant_type": "client_credentials",
-  "client_id": "REPLACE_WITH_CLIENT_ID",
-  "client_secret": "REPLACE WITH SECRET"
+  "client_id": os.environ["REPLACE_WITH_CLIENT_ID"],
+  "client_secret": os.environ["REPLACE_WITH_SECRET"]
 })
 
 headers = {
