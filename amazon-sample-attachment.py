@@ -30,7 +30,7 @@ AWS_REGION = "eu-west-2"
 SUBJECT = "Captain App Report"
 
 # The full path to the file that will be attached to the email.
-ATTACHMENT = "/home/josh/Documents/GitHub/Python-Functions/CaptainAppReport.pdf"
+ATTACHMENT = "CaptainAppReport.pdf"
 
 # The email body for recipients with non-HTML email clients.
 BODY_TEXT = "Hello,\r\nPlease see the attached file for a list of customers to contact."
