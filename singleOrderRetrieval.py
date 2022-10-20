@@ -1,7 +1,7 @@
 import requests
 import json
 
-url = "https://uncommon.commercelayer.io/api/orders/PKaehVzKaL"
+url = "https://uncommon.commercelayer.io/api/orders"
 
 payload={}
 headers = {
@@ -12,3 +12,26 @@ headers = {
 response = requests.request("GET", url, headers=headers, data=payload)
 
 print(response.text)
+
+
+data = json.loads(response.text)
+
+# allOrders = {}
+# for order in data['data']:
+
+#     orderInfo = {}
+#     attributes = order['attributes']
+#     orderID = attributes['number']
+
+#     orderInfo['OrderDate'] = attributes['payment_updated_at']
+
+data = json.loads(response.text)
+
+# allOrders = {}
+# for order in data['data']:
+
+#     orderInfo = {}
+#     attributes = order['attributes']
+#     orderID = attributes['number']
+
+#     orderInfo['OrderDate'] = attributes['payment_updated_at']
