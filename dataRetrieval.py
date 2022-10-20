@@ -19,7 +19,7 @@ data = json.loads(response.text)
 allOrders = {}
 pageNumber = 0
     
-while pageNumber < 2:
+while 1:
   urlDict = data['links']
 
   if pageNumber == 0:
@@ -43,11 +43,11 @@ while pageNumber < 2:
     pageNumber += 1
     break
 
-draftOrders = allOrders['draft']
+pendingOrders = allOrders['pending']
 
-for Ids in draftOrders:
+for Ids in pendingOrders:
     print(Ids)
-    print(allOrders[Ids])
+    print(pendingOrders[Ids])
     print('\n')
     
 

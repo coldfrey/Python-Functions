@@ -49,12 +49,12 @@ def retrieveAddressInfo(relationships, arg):
     headers = {
         'Authorization': 'Bearer ' + authToken
     }
-    print('Reaching out...')
+    # print('Reaching out...')
     response = requests.request("GET", url, headers=headers, data=payload)
-    print('Touching me..')
+    # print('Touching me..')
     info = json.loads(response.text)
-    print('Touching you..')
-    print('request made')
+    # print('Touching you..')
+    # print('request made')
     if info['data'] is not None:
         return info['data']['attributes']['full_address']
     else:
