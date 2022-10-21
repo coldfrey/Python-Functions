@@ -5,10 +5,10 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-from pdf_generator import generatePDF
+from pdf_generator import create_pdf
 
 
-generatePDF('test_data')
+create_pdf("CA-report.pdf")
 
 # Replace sender@example.com with your "From" address.
 # This address must be verified with Amazon SES.
@@ -30,7 +30,7 @@ AWS_REGION = "eu-west-2"
 SUBJECT = "Captain App Report"
 
 # The full path to the file that will be attached to the email.
-ATTACHMENT = "CaptainAppReport.pdf"
+ATTACHMENT = "CA-report.pdf"
 
 # The email body for recipients with non-HTML email clients.
 BODY_TEXT = "Hello,\r\nPlease see the attached file for a list of customers to contact."
