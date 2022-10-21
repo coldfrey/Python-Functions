@@ -1,3 +1,5 @@
+from cmath import atan
+from attr import attributes
 import requests
 import json
 from getAuth import authToken
@@ -11,15 +13,12 @@ def addOrdersToDict(allOrders, data):
       relationships = order['relationships']
 
       orderID = order['id']
-      
       status = attributes["status"]
-            
-      if status not in allOrders.items():
-        allOrders[status] = []
-      else:
-        allOrders[status].append(orderID)
-
       
+      print(orderID, ': ', status)
+      if status != 'placed':
+        continue
+
         
       orderInfo['Status'] = status
       orderInfo['OrderDate'] = attributes['payment_updated_at']
@@ -27,7 +26,7 @@ def addOrdersToDict(allOrders, data):
       orderInfo['ShippingInfo'] = retrieveAddressInfo(relationships, 'shipping_address')
       orderInfo['CustomerEmail'] = attributes['customer_email']
 
-      orderInfo['UnitDescription'] = None
+      orderInfo['UnitDescription'] = retrieveLineItems(relationships)
       orderInfo['UnitQuantity'] = None
       orderInfo['UnitRate'] = None
       orderInfo['TotalPrice'] = attributes['formatted_total_amount_with_taxes']
@@ -49,13 +48,68 @@ def retrieveAddressInfo(relationships, arg):
     headers = {
         'Authorization': 'Bearer ' + authToken
     }
-    # print('Reaching out...')
+
     response = requests.request("GET", url, headers=headers, data=payload)
-    # print('Touching me..')
+    
     info = json.loads(response.text)
-    # print('Touching you..')
-    # print('request made')
+    
     if info['data'] is not None:
         return info['data']['attributes']['full_address']
     else:
         return 'No ' + arg.replace('_', ' ') + ' provided'
+
+
+# Function to make API call to line_items
+def retrieveLineItems(relationships):
+    url = relationships['line_items']['links']['related']
+    
+    payload={}
+    headers = {
+        'Authorization': 'Bearer ' + authToken
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+    
+    info = json.loads(response.text)
+    line_items_data = info['data']
+
+    line_items = []
+    for line_item in line_items_data:
+      item_data = extractLineItemData(line_item)
+      if item_data is not None:
+        line_items.append(item_data)
+
+    return line_items
+
+
+# Function to extract line_item data
+def extractLineItemData(line_item):
+    item_data = {}
+    
+    item_data['id'] = line_item['id']
+    attributes = line_item['attributes']
+
+    sku_code = attributes['sku_code']
+    if sku_code is None:
+      return None
+
+    item_data['sku_code'] = sku_code
+    item_data['quantity'] = attributes['quantity']
+    item_data['unit_price'] = attributes['formatted_unit_amount']
+    item_data['total_price'] = attributes['formatted_total_amount']
+    item_data['unit_description'] = attributes['name']
+    item_data['image_url'] = attributes['image_url']
+
+    return item_data
+
+'''
+{
+  "id": 1,
+  "sku_code": 1,
+  "quantity": 1,
+  "unitPrice": 1000,
+  "total_unit_price": 1000,
+  "name": "Jaguar F-Pace",
+  "image_url": "https://www.jaguar.com/content/dam/jaguar/uk/vehicles/f-pace/2017/overview/overview-1.jpg"
+},
+            '''
