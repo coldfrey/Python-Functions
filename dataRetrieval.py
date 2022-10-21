@@ -13,7 +13,9 @@ headers = {
   'Authorization': 'Bearer ' + authToken
 }
 
+print('Running first api call...')
 response = requests.request("GET", url, headers=headers, data=payload)
+print('First api call success')
 data = json.loads(response.text)
 
 allOrders = {}
@@ -43,12 +45,19 @@ while 1:
     pageNumber += 1
     break
 
-pendingOrders = allOrders['pending']
-
-for Ids in pendingOrders:
-    print(Ids)
-    print(pendingOrders[Ids])
-    print('\n')
+# pendingOrders = allOrders['pending']
+# print('\n Pending: \n')
+# print(pendingOrders)
     
+# draftOrders = allOrders['draft']
+# print('\n Draft: \n')
+# # print(draftOrders)
+
+# placedOrders = allOrders['placed']
+# print('\n Placed: \n')
+# print(placedOrders)
+
+with open("API_data.json", "w") as outfile:
+    json.dump(allOrders, outfile, indent=4)
 
 
