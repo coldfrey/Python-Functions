@@ -1,120 +1,53 @@
 # import csvfile and extract data using set of rules outlined below
 
 import pandas as pd
+import numpy as np
 
+from uncommonClasses import Taxon, Product, Variant
 
-# Notes for Andre:
-# - below is a not working version of what we are going for. 
+# Read CSV file
+product_upload_df = pd.read_csv('EPU.csv')
 
-# The Taxons and the sizes should already be in the Sanity database and hence no need to reupload.
-# The prices are tbc and will be added later. For now we can just make the SKUs on Commerce Layer and add the prices later.
+# Split df into Products and Variants
+unique_products = product_upload_df[product_upload_df['Type'] == 'Product']['Product Name'].dropna().unique()
 
-# See also sanity_connect.py for how to connect to Sanity and make a query.
+# Create a new column in the dataframe to hold product type
+# for each unique product, check if string exists in the product name column, if so, assign product type to the new column
+product_upload_df['Product Type'] = np.nan
+for product in unique_products:
+    product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Product Type'] = product
 
-# See sudo code below:
+    # Assign the same taxon to all variants of the same product
+    product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Taxons'] = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Taxons'].iloc[0]
+ 
+# Split the dataframe into two dataframes, one for products and one for variants
+product_df = product_upload_df[product_upload_df['Type'] == 'Product']
+variant_df = product_upload_df[product_upload_df['Type'] == 'Variant']
 
-# 1. Create a list of unique taxons
-# 2. For each taxon, create a taxon object
-# 3. Create a list of products
-# 4. For each product, create a product object
-# 5. Create a list of variants (There will need to be a varient added for each of the accessories because the accessories varients are not in the CSV)
-# 6. For each variant, create a variant object
-# 7. Add variant to product
-# 8. Add product to taxon
-# 9. Add taxon to list of taxons
-# 10. Print the first variant of the first product of the first taxon - First test.
-# 11. Upload variants to Sanity - update or insert
-# 12. Upload products to Sanity - update or insert
-# 13. Upload taxons to Sanity - update or insert
-# 15. For each SKU (Variant), create a SKU object on Commerce Layer
-
-# DONE! Enjoy your weekend!
-
-
-
-
-# read csv file
-product_upload_df = pd.read_csv('EPU.csv') # Envision Product Upload
-
-# Column names
-# print(df.columns)
-# 'Product SKU', 'Barcode EAN', 'HS Codes', 'Type', 'Taxons', 'Size', 'Colour', 'Product Name', 'Price', 'Inventory (qty)', 'Composition', 'COO', 'MOQ', 'OQI', 'Image Source', 'Weight', 'Pieces Per Pack'
+# For each product, if the Product sku column is NaN, assign the Product sku of its first variant to the product sku column
+for product in unique_products:
+    if pd.isna(product_df.loc[product_df['Product Type'] == product, 'Product SKU'].iloc[0]):
+        product_df.loc[product_df['Product Type'] == product, 'Product SKU'] = variant_df.loc[variant_df['Product Name'].str.contains(product), 'Product SKU'].iloc[0] + '-P'
 
 # sizes - Will need to be uploaded to Sanity before uploading products/variants, update or insert.
-sizes = product_upload_df['Size'].unique() 
-
-# colours - Will need to be uploaded to Sanity before uploading products/variants, update or insert.
-# colours = product_upload_df['Colour'].unique() # note that for this catalogue, there are no colours.
-
-# create Class for Taxons
-class Taxon:
-    def __init__(self, name):
-        self.name = name
-        self.label = name # Will update in Sanity
-        # generate slug
-        self.slug = self.name.lower().replace(' ', '-')
-        self.products = []
-
-
-# Create Class for Products
-class Product:
-  def __init__(
-    self,
-    name, 
-    composition, 
-    coo, 
-    slug,
-    moq, 
-    oqi, 
-    reference,
-    price,
-    ):
-    self.name = name
-    # self.description = description
-    self.composition = composition
-    self.coo = coo
-    self.slug = slug
-    self.moq = moq
-    self.oqi = oqi
-    self.reference = reference
-    self.price = price
-    self.variants = []
-
-
-# Create Class for Variants
-class Variant:
-  def __init__(
-    self,
-    name, # [Product Name] ([size] [colour])
-    sku,
-    barcode,
-    # lead_time,
-    size, 
-    # colour,
-    ):
-    self.sku = sku
-    self.barcode = barcode
-    self.size = size
-    # self.colour = colour
-    # generate slug
-    self.name = name
+sizes = product_upload_df['Size'].dropna().unique() 
 
 # Create list of unique taxons
-taxons = product_upload_df['Taxons'].unique()
+taxons = product_df['Taxons'].dropna().unique()
+AllTaxons = []
 
 # Create list of products
-
 for taxon in taxons:
-    # create taxon object
     taxon = Taxon(taxon)
+
     # create list of products
-    products = product_upload_df[product_upload_df['Taxons'] == taxon.name]
-    # create list of unique products where 'Type' == 'Product'
-    unique_products = products[products['Type'] == 'Product']['Product Name'].unique()
-    for product in unique_products:
+    products = product_df[product_df['Taxons'] == taxon.name]
+
+    for index, product in products.iterrows():
+
       # create product object
       product = Product(
-        name = product,
+        name = product['Product Name'],
         # description = product['Description'],
         composition = product['Composition'],
         coo = product['COO'],
@@ -124,27 +57,64 @@ for taxon in taxons:
         reference = product['Product SKU'],
         price = product['Price'],
         )
+
       # create list of variants
-      variants = products[products['Product Name'] == product.name]
+      variants = variant_df[variant_df['Product Type'] == product.name]
+
       # for each variant, create a variant object
-      for variant in variants:
-        # create variant object
+      for index, row in variants.iterrows():
         variant = Variant(
-          name = variant['Product Name'] + ' (' + variant['Size'] + ')',
-          sku = variant['Product SKU'],
-          barcode = variant['Barcode EAN'],
-          # lead_time = variant['Lead Time'],
-          size = variant['Size'],
-          # colour = variant['Colour'],
+          name = row['Product Name'],
+          sku = row['Product SKU'],
+          barcode = row['Barcode EAN'],
+          size = row['Size'],
+          # colour = row['Colour'],
           )
-          # add variant to product
+        # append variant object to product object
         product.variants.append(variant)
+      
       # add product to taxon
       taxon.products.append(product)
     # add taxon to list of taxons
-    taxons.append(taxon)
+    AllTaxons.append(taxon)
+
 
 # print the first variant of the first product of the first taxon - First test.
-print(taxons[0].products[0].variants[0].name)
+print(AllTaxons[0].products[0].variants[0].name)
+
+# create toJson dictionary
+toJson = {}
+for taxon in AllTaxons:
+  toJson[taxon.name] = {'label': taxon.label, 'slug': taxon.slug, 'products': []}
+  for product in taxon.products:
+    toJson[taxon.name]['products'].append({
+      'name': product.name,
+      'composition': product.composition,
+      'coo': product.coo,
+      'slug': product.slug,
+      'moq': product.moq,
+      'oqi': product.oqi,
+      'reference': product.reference,
+      'price': product.price,
+      'variants': []
+      })
+    for variant in product.variants:
+      toJson[taxon.name]['products'][-1]['variants'].append({
+        'name': variant.name,
+        'sku': variant.sku,
+        'barcode': variant.barcode,
+        'size': variant.size,
+        # 'colour': variant.colour,
+        })
+
+print('\n Here:')
+print(toJson['envision-clothing']['products'][0]['coo'])
+
+import json
+with open("TaxonData.json", "w") as outfile:
+    json.dump(toJson, outfile, indent=4)
+
+
+
 
 

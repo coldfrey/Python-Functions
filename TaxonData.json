@@ -1,0 +1,712 @@
+{
+    "envision-clothing": {
+        "label": "envision-clothing",
+        "slug": "envision-clothing",
+        "products": [
+            {
+                "name": "Replica Polo Shirt",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "replica-polo-shirt",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1101",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Replica Polo Shirt - Men's",
+                        "sku": "ENV1102",
+                        "barcode": 604565744128.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Men's",
+                        "sku": "ENV1103",
+                        "barcode": 604565744135.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Men's",
+                        "sku": "ENV1104",
+                        "barcode": 604565744142.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Men's",
+                        "sku": "ENV1105",
+                        "barcode": 604565744159.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Men's",
+                        "sku": "ENV1106",
+                        "barcode": 604565744166.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Men's",
+                        "sku": "ENV1107",
+                        "barcode": 604565744173.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Women's",
+                        "sku": "ENV1109",
+                        "barcode": 604565744197.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Women's",
+                        "sku": "ENV1110",
+                        "barcode": 604565744203.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Women's",
+                        "sku": "ENV1111",
+                        "barcode": 604565744210.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Women's",
+                        "sku": "ENV1112",
+                        "barcode": 604565744227.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Women's",
+                        "sku": "ENV1113",
+                        "barcode": 604565744234.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Replica Polo Shirt - Women's",
+                        "sku": "ENV1114",
+                        "barcode": 604565744241.0,
+                        "size": "2XL"
+                    }
+                ]
+            },
+            {
+                "name": "Performance T-Shirt",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "performance-t-shirt",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1115-P",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Performance T-Shirt - Men's",
+                        "sku": "ENV1115",
+                        "barcode": 604565744258.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Men's",
+                        "sku": "ENV1116",
+                        "barcode": 604565744265.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Men's",
+                        "sku": "ENV1117",
+                        "barcode": 604565744272.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Men's",
+                        "sku": "ENV1118",
+                        "barcode": 604565744289.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Men's",
+                        "sku": "ENV1119",
+                        "barcode": 604565744296.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Men's",
+                        "sku": "ENV1120",
+                        "barcode": 604565744302.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Women's",
+                        "sku": "ENV1122",
+                        "barcode": 604565744326.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Women's",
+                        "sku": "ENV1123",
+                        "barcode": 604565744333.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Women's",
+                        "sku": "ENV1124",
+                        "barcode": 604565744340.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Women's",
+                        "sku": "ENV1125",
+                        "barcode": 604565744357.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Women's",
+                        "sku": "ENV1126",
+                        "barcode": 604565744364.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Performance T-Shirt - Women's",
+                        "sku": "ENV1127",
+                        "barcode": 604565744371.0,
+                        "size": "2XL"
+                    }
+                ]
+            },
+            {
+                "name": "Hoodie",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "hoodie",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1128-P",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Hoodie - Men's",
+                        "sku": "ENV1128",
+                        "barcode": 604565744388.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Hoodie - Men's",
+                        "sku": "ENV1129",
+                        "barcode": 604565744395.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Hoodie - Men's",
+                        "sku": "ENV1130",
+                        "barcode": 604565744401.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Hoodie - Men's",
+                        "sku": "ENV1131",
+                        "barcode": 604565744418.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Hoodie - Men's",
+                        "sku": "ENV1132",
+                        "barcode": 604565744425.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Hoodie - Men's",
+                        "sku": "ENV1133",
+                        "barcode": 604565744432.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Hoodie - Women's",
+                        "sku": "ENV1135",
+                        "barcode": 604565744456.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Hoodie - Women's",
+                        "sku": "ENV1136",
+                        "barcode": 604565744463.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Hoodie - Women's",
+                        "sku": "ENV1137",
+                        "barcode": 604565744470.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Hoodie - Women's",
+                        "sku": "ENV1138",
+                        "barcode": 604565744487.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Hoodie - Women's",
+                        "sku": "ENV1139",
+                        "barcode": 604565744494.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Hoodie - Women's",
+                        "sku": "ENV1140",
+                        "barcode": 604565744500.0,
+                        "size": "2XL"
+                    }
+                ]
+            },
+            {
+                "name": "Performance Climate T-Shirt",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "performance-climate-t-shirt",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1141-P",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Performance Climate T-Shirt - Men's",
+                        "sku": "ENV1141",
+                        "barcode": 604565744517.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Men's",
+                        "sku": "ENV1142",
+                        "barcode": 604565744524.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Men's",
+                        "sku": "ENV1143",
+                        "barcode": 604565744531.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Men's",
+                        "sku": "ENV1144",
+                        "barcode": 604565744548.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Men's",
+                        "sku": "ENV1145",
+                        "barcode": 604565744555.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Men's",
+                        "sku": "ENV1146",
+                        "barcode": 604565744562.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Women's",
+                        "sku": "ENV1148",
+                        "barcode": 604565744586.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Women's",
+                        "sku": "ENV1149",
+                        "barcode": 604565744593.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Women's",
+                        "sku": "ENV1150",
+                        "barcode": 604565744609.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Women's",
+                        "sku": "ENV1151",
+                        "barcode": 604565744616.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Women's",
+                        "sku": "ENV1152",
+                        "barcode": 604565744623.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Performance Climate T-Shirt - Women's",
+                        "sku": "ENV1153",
+                        "barcode": 604565744630.0,
+                        "size": "2XL"
+                    }
+                ]
+            },
+            {
+                "name": "Graphic T-Shirt 2",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "graphic-t-shirt-2",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1154-P",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Graphic T-Shirt 2 - Men's",
+                        "sku": "ENV1154",
+                        "barcode": 604565744647.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Men's",
+                        "sku": "ENV1155",
+                        "barcode": 604565744654.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Men's",
+                        "sku": "ENV1156",
+                        "barcode": 604565744661.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Men's",
+                        "sku": "ENV1157",
+                        "barcode": 604565744678.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Men's",
+                        "sku": "ENV1158",
+                        "barcode": 604565744685.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Men's",
+                        "sku": "ENV1159",
+                        "barcode": 604565744692.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Women's",
+                        "sku": "ENV1161",
+                        "barcode": 604565744715.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Women's",
+                        "sku": "ENV1162",
+                        "barcode": 604565744722.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Women's",
+                        "sku": "ENV1163",
+                        "barcode": 604565744739.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Women's",
+                        "sku": "ENV1164",
+                        "barcode": 604565744746.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Women's",
+                        "sku": "ENV1165",
+                        "barcode": 604565744753.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 2 - Women's",
+                        "sku": "ENV1166",
+                        "barcode": 604565744760.0,
+                        "size": "2XL"
+                    }
+                ]
+            },
+            {
+                "name": "Graphic T-Shirt 3",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "graphic-t-shirt-3",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1167-P",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Graphic T-Shirt 3 - Men's",
+                        "sku": "ENV1167",
+                        "barcode": 604565744777.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Men's",
+                        "sku": "ENV1168",
+                        "barcode": 604565744784.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Men's",
+                        "sku": "ENV1169",
+                        "barcode": 604565744791.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Men's",
+                        "sku": "ENV1170",
+                        "barcode": 604565744807.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Men's",
+                        "sku": "ENV1171",
+                        "barcode": 604565744814.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Men's",
+                        "sku": "ENV1172",
+                        "barcode": 604565744821.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Women's",
+                        "sku": "ENV1174",
+                        "barcode": 604565744845.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Women's",
+                        "sku": "ENV1175",
+                        "barcode": 604565744852.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Women's",
+                        "sku": "ENV1176",
+                        "barcode": 604565744869.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Women's",
+                        "sku": "ENV1177",
+                        "barcode": 604565744876.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Women's",
+                        "sku": "ENV1178",
+                        "barcode": 604565744883.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Graphic T-Shirt 3 - Women's",
+                        "sku": "ENV1179",
+                        "barcode": 604565744890.0,
+                        "size": "2XL"
+                    }
+                ]
+            },
+            {
+                "name": "Hybrid Jacket",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "hybrid-jacket",
+                "moq": 25.0,
+                "oqi": NaN,
+                "reference": "ENV1180-P",
+                "price": "TBC",
+                "variants": [
+                    {
+                        "name": "Hybrid Jacket - Men's",
+                        "sku": "ENV1180",
+                        "barcode": 604565744906.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Men's",
+                        "sku": "ENV1181",
+                        "barcode": 604565744913.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Men's",
+                        "sku": "ENV1182",
+                        "barcode": 604565744920.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Men's",
+                        "sku": "ENV1183",
+                        "barcode": 604565744937.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Men's",
+                        "sku": "ENV1184",
+                        "barcode": 604565744944.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Men's",
+                        "sku": "ENV1185",
+                        "barcode": 604565744951.0,
+                        "size": "2XL"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Women's",
+                        "sku": "ENV1187",
+                        "barcode": 604565744975.0,
+                        "size": "XS"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Women's",
+                        "sku": "ENV1188",
+                        "barcode": 604565744982.0,
+                        "size": "S"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Women's",
+                        "sku": "ENV1189",
+                        "barcode": 604565744999.0,
+                        "size": "M"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Women's",
+                        "sku": "ENV1190",
+                        "barcode": 604565745002.0,
+                        "size": "L"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Women's",
+                        "sku": "ENV1191",
+                        "barcode": 604565745019.0,
+                        "size": "XL"
+                    },
+                    {
+                        "name": "Hybrid Jacket - Women's",
+                        "sku": "ENV1192",
+                        "barcode": 604565745026.0,
+                        "size": "2XL"
+                    }
+                ]
+            }
+        ]
+    },
+    "envision-accessories": {
+        "label": "envision-accessories",
+        "slug": "envision-accessories",
+        "products": [
+            {
+                "name": "Replica Cap",
+                "composition": "TBC",
+                "coo": "Italy",
+                "slug": "replica-cap",
+                "moq": 25.0,
+                "oqi": 5.0,
+                "reference": "ENV1193",
+                "price": "\u00a316.50",
+                "variants": []
+            },
+            {
+                "name": "Bucket Hat",
+                "composition": "TBC",
+                "coo": "TBC",
+                "slug": "bucket-hat",
+                "moq": 25.0,
+                "oqi": 5.0,
+                "reference": "ENV1194",
+                "price": "\u00a312.50",
+                "variants": []
+            },
+            {
+                "name": "Wireless Charger",
+                "composition": "Bamboo, Bamboo+Aluminum alloy",
+                "coo": "China",
+                "slug": "wireless-charger",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1195",
+                "price": "\u00a315.00",
+                "variants": []
+            },
+            {
+                "name": "Water Bottle",
+                "composition": "Stainless Steel",
+                "coo": "China",
+                "slug": "water-bottle",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1196",
+                "price": "\u00a315.00",
+                "variants": []
+            },
+            {
+                "name": "Face Mask",
+                "composition": "100% Woven cotton",
+                "coo": "China",
+                "slug": "face-mask",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1197",
+                "price": "TBC",
+                "variants": []
+            },
+            {
+                "name": "Tote Bag",
+                "composition": "Recycled Clothing",
+                "coo": "China",
+                "slug": "tote-bag",
+                "moq": NaN,
+                "oqi": 10.0,
+                "reference": "ENV1198",
+                "price": "TBC",
+                "variants": []
+            },
+            {
+                "name": "Drawstring Bag",
+                "composition": "Recycled Material",
+                "coo": "China",
+                "slug": "drawstring-bag",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1199",
+                "price": "TBC",
+                "variants": []
+            },
+            {
+                "name": "Sunglasses",
+                "composition": NaN,
+                "coo": "China",
+                "slug": "sunglasses",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1200",
+                "price": "\u00a36.50",
+                "variants": []
+            },
+            {
+                "name": "Anti-Theft Backpack",
+                "composition": "Recycled Material",
+                "coo": "China",
+                "slug": "anti-theft-backpack",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1201",
+                "price": "\u00a330.00",
+                "variants": []
+            },
+            {
+                "name": "Notebook",
+                "composition": "Vegan Leather",
+                "coo": "China",
+                "slug": "notebook",
+                "moq": NaN,
+                "oqi": 5.0,
+                "reference": "ENV1202",
+                "price": "TBC",
+                "variants": []
+            }
+        ]
+    }
+}
