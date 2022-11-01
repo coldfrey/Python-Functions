@@ -2,6 +2,8 @@
 
 import requests
 import json
+import uncommonClasses
+import importCSV
 
 # Notes for Andre:
 
@@ -37,9 +39,9 @@ query = {
 }
 
 # Make the request
-response = requests.post(api_endpoint_query, data=json.dumps(query), headers=headers)
+# response = requests.post(api_endpoint_query, data=json.dumps(query), headers=headers)
 
-print(response.json())
+# print(response.json())
 
 # Demo mutation - update or insert a product with the following properties: 
 # name - localeString - "Test Product"
@@ -82,7 +84,71 @@ mutation = {
   ]
 }
 
-# Make the request
-response = requests.post(api_endpoint_mutate, data=json.dumps(mutation), headers=headers)
 
-print(response.json())
+AllTaxons = importCSV.generateTaxonObjects('EPU.csv')
+
+
+def populateVariants(Product):
+  variants = []
+  for variant in Product.variants:
+    variants.append({
+      'name': variant.name,
+      'sku': variant.sku,
+      'barcode': variant.barcode,
+      'size': variant.size,
+      # 'colour': variant.colour,
+      })
+
+  return variants
+
+
+def populateProducts(Taxon):
+  products = []
+  for product in Taxon.products:
+    products.append({
+      'name': product.name,
+      # 'description': product.description,
+      'composition': product.composition,
+      'coo': product.coo,
+      'slug': product.slug,
+      'minimumOrderQuantity': product.moq,
+      'orderIncrement': product.oqi,
+      'reference': product.reference,
+      # 'leadtime': product.leadtime,
+      'variants': populateVariants(product)
+      })
+
+  return products
+
+# Create mutations based on the taxons
+mutations = {
+  'mutations': [
+    {
+      'createOrReplace': [
+        {
+          '_type': 'taxon',
+          'name': {
+            'en': Taxon.name,
+          },
+          'label': {
+            'en': Taxon.label,
+          },
+          'slug': Taxon.slug,
+          'products': {
+            populateProducts(Taxon)
+          }            
+        }
+      ] for Taxon in AllTaxons
+    }
+  ]
+}
+
+print(mutations)
+
+
+
+
+# # Make the request
+# response = requests.post(api_endpoint_mutate, data=json.dumps(mutation), headers=headers)
+
+# print(response.json())
