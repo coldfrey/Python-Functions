@@ -1,7 +1,8 @@
 # Connect to the Sanity API to Add the data that does not come from the CSV.
 
-import requests
 import json
+
+import requests
 
 # Set the API key
 api_key = 'skdvPrsX0H14MCyNQhgb1Gkz92AVOAnfsKubLgRyG88JUtNINPJIoxj23ijMI1ffQZgckXnzSNztTzVX80zgq7G7J3rQaPKbo0a4XQl2XmWUB9wLc7lLjW7plojlBRG9S7k41SdlrONACACavE418Wf8yDBi54KdzYh35WeA2tCDhRFKzR58'
@@ -279,3 +280,30 @@ mutation = {
 response = requests.post(api_endpoint_mutate, data=json.dumps(mutation), headers=headers)
 
 print(response.json())
+
+def addColor():
+  from uncommonClasses import Color
+  color = Color("N/A")
+
+  # Set the mutation to add the color
+  # color format:
+  #   "_type": "color",
+  #   "name": string
+  mutations = []
+  mutations.append({
+    'createOrReplace': {
+      '_type': 'color',
+      'name': color.name,
+      '_id': 'color-' + seededKey(color.name['en']),
+    }
+  })
+
+  mutation = {
+    'mutations': mutations
+  }
+
+  # Make the request
+  response = requests.post(api_endpoint_mutate, data=json.dumps(mutation), headers=headers)
+
+  
+addColor()
