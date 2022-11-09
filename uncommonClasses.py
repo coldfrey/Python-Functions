@@ -285,3 +285,17 @@ class Variant:
     }
 
 
+class SKU:
+    def __init__(self, sku, price, name):
+        self.sku = sku
+        # check price is an integer or reject the init
+        if isinstance(price, int):
+          self.price = price
+        else:
+          self.price = None
+          print('Price must be an integer')
+        self.name = name
+        self.id = seededKey('sku-' + self.sku)
+    
+    def __str__(self):
+        return f'{self.sku} {self.price} {self.name}'

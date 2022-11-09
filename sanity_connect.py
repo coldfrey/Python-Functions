@@ -6,6 +6,7 @@ import importCSV
 import uncommonClasses
 
 import os
+from dotenv import load_dotenv
 
 
 # Connect to the Sanity API
@@ -19,7 +20,7 @@ import os
 # then add these ids to the product object.
 
 # Set the API key
-
+load_dotenv()
 api_key = os.getenv('SANITY_API_KEY')
 # datasets: production | uncommon (uncommon is a test dataset)
 dataset = 'production' # whilst we test the code let's use the uncommon dataset
@@ -202,7 +203,7 @@ for taxon in AllTaxons:
         if variant.size == size:
           variant.size = size
 
-print(AllTaxons[0].products[0].variants[0].size)
+# print(AllTaxons[0].products[0].variants[0].size)
 
 # create or replace sizes in Sanity
 def createOrUpdateSizes(sizes):
@@ -232,7 +233,7 @@ def createOrUpdateSizes(sizes):
   response = response.json()
   print(json.dumps(response, indent=2, sort_keys=True))
 
-createOrUpdateSizes(sizes)
+# createOrUpdateSizes(sizes)
 
 # create or replace all variants
 def createOrUpdateVariants(Taxons):
