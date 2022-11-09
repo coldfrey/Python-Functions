@@ -8,6 +8,7 @@ from uncommonClasses import Product, Size, Taxon, Variant
 # import numpy as np
 # from sanity_connect import AllTaxons
 
+CATALOGNAME = "ENV"
 
 def checkForTBC(string):
   if (string == 'TBC' or string == '' or string == False):
@@ -55,7 +56,7 @@ def generateProductObjects(inputCSV):
   # print the length of the unique products 
   print("Number of unique products: ", len(unique_products))
   
-  catalogName = "Env "
+  
   
   product_objects = []
   for product in unique_products:
@@ -77,9 +78,10 @@ def generateProductObjects(inputCSV):
     # print(comp)
     product = Product(
       # Name
-      catalogName + product,
+      CATALOGNAME,
+      product,
       # Slug
-      (catalogName.lower() + product.lower()) .replace(' ', '-'),
+      (CATALOGNAME.lower() + "-" + product.lower()) .replace(' ', '-'),
       # Reference - note that this will be 'P-' + the first variant sku 
       reference = 'P-' + ref,
       price = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Price'].iloc[0]),
@@ -125,7 +127,6 @@ def generateVariantObjects(inputCSV):
   variant_objects = []
   for variant in unique_variants:
     # print(variant)
-
     product_name = product_upload_df.loc[product_upload_df['Product SKU'].str.contains(variant, na=False), 'Product Name'].iloc[0]
     
     size = product_upload_df.loc[product_upload_df['Product SKU'].str.contains(variant, na=False), 'Size'].iloc[0]
@@ -141,7 +142,7 @@ def generateVariantObjects(inputCSV):
     #   colour = str(colour)
 
     
-    variant_name = product_name + ' (' + size + ')'
+    variant_name = CATALOGNAME + " " + product_name + ' (' + size + ')'
     # print(variant_name)
 
     variant = Variant(
@@ -163,11 +164,11 @@ def combineObjects(taxon_objects, product_objects, variant_objects):
   for taxon in taxon_objects:
     for product in product_objects:
       if taxon.slug['en'] in product.taxons:
-        taxon.addProduct(product)
         for variant in variant_objects:
           if variant.name['en'].lower().find(product.name['en'].lower()) != -1:
-              print("Adding variant: ", variant.name['en'], " to product: ", product.name['en'])
+              # print("Adding variant: ", variant.name['en'], " to product: ", product.name['en'])
               product.addVariant(variant)
+        taxon.addProduct(product)
 
   # add products to taxons
   for taxon in taxon_objects:
@@ -202,6 +203,6 @@ if __name__ == "__main__":
   # print(AllVariants[2])
   AllTaxons = combineObjects(AllTaxons, AllProducts, AllVariants)
   print("first taxon: ")
-  print(AllTaxons[0].products)
+  print(AllTaxons[0].products[0])
   print("second taxon: ")
-  print(AllTaxons[1].products)
+  # print(AllTaxons[1].products)

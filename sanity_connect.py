@@ -1,13 +1,11 @@
 import json
+import os
 
 import requests
+from dotenv import load_dotenv
 
 import importCSV
 import uncommonClasses
-
-import os
-from dotenv import load_dotenv
-
 
 # Connect to the Sanity API
 # Notes for Andre:
@@ -273,7 +271,7 @@ def createOrUpdateVariants(Taxons):
   response = response.json()
   print(json.dumps(response, indent=2, sort_keys=True))
 
-createOrUpdateVariants(AllTaxons)
+# createOrUpdateVariants(AllTaxons)
 
 # create or replace all products
 def createOrUpdateProducts(Taxons):
@@ -285,6 +283,7 @@ def createOrUpdateProducts(Taxons):
           '_type': 'product',
           '_id': product.id,
           'name': product.name,
+          'label': product.label,
           # 'description': product.description,
           'composition': product.composition,
           'coo': product.coo,
@@ -346,7 +345,7 @@ def addVariantsToProducts(Taxons):
   }
 
   # print(json.dumps(mutation, indent=2, sort_keys=True))
-  print("Number of products variants patch: " + str(len(mutations)))
+  print("Number of products with variants to patch: " + str(len(mutations)))
   # create or update products
   response = requests.post(api_endpoint_mutate, data=json.dumps(mutation), headers=headers)
 

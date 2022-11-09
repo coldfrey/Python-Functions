@@ -52,6 +52,7 @@ class Taxon:
 class Product:
   def __init__(
     self,
+    catalog,
     name, 
     slug,
     reference = None,
@@ -65,6 +66,9 @@ class Product:
     # leadtime,
     ):
     self.name = {
+      'en': catalog + " " + name
+    }
+    self.label = {
       'en': name
     }
     # self.description = {
