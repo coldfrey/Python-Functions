@@ -55,6 +55,7 @@ def generateProductObjects(inputCSV):
   # print the length of the unique products 
   print("Number of unique products: ", len(unique_products))
   
+  catalogName = "Env "
   
   product_objects = []
   for product in unique_products:
@@ -76,9 +77,9 @@ def generateProductObjects(inputCSV):
     # print(comp)
     product = Product(
       # Name
-      product,
+      catalogName + product,
       # Slug
-      product.lower().replace(' ', '-'),
+      (catalogName.lower() + product.lower()) .replace(' ', '-'),
       # Reference - note that this will be 'P-' + the first variant sku 
       reference = 'P-' + ref,
       price = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Price'].iloc[0]),
@@ -159,12 +160,15 @@ def generateVariantObjects(inputCSV):
 
 def combineObjects(taxon_objects, product_objects, variant_objects):
   # add variants to products
-  for product in product_objects:
-    for variant in variant_objects:
-      # if variant name contains product name
-      if variant.name['en'].lower().find(product.name['en'].lower()) != -1:
-        product.addVariant(variant)
-  
+  for taxon in taxon_objects:
+    for product in product_objects:
+      if taxon.slug['en'] in product.taxons:
+        taxon.addProduct(product)
+        for variant in variant_objects:
+          if variant.name['en'].lower().find(product.name['en'].lower()) != -1:
+              print("Adding variant: ", variant.name['en'], " to product: ", product.name['en'])
+              product.addVariant(variant)
+
   # add products to taxons
   for taxon in taxon_objects:
     for product in product_objects:
@@ -199,3 +203,5 @@ if __name__ == "__main__":
   AllTaxons = combineObjects(AllTaxons, AllProducts, AllVariants)
   print("first taxon: ")
   print(AllTaxons[0].products)
+  print("second taxon: ")
+  print(AllTaxons[1].products)
