@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
 
-from pdf_generator import create_pdf
+from order_window_pdf_gen import create_pdf
 
 
 create_pdf("CA-report.pdf")
