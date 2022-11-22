@@ -5,7 +5,7 @@ from CommerceQueries import addOrdersToDict
 from getAuth import authToken
 
 
-url = "https://uncommon.commercelayer.io/api/orders" #?page%5Bnumber%5D=14&page%5Bsize%5D=10"
+url = "https://uncommon.commercelayer.io/api/orders"
 
 payload={}
 headers = {

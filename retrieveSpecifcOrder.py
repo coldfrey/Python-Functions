@@ -1,10 +1,5 @@
 import requests
 import json
-
-from cmath import atan
-from attr import attributes
-import requests
-import json
 from getAuth import authToken
 
 
