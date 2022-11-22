@@ -1,8 +1,11 @@
 import json
 import os
 
-import requests
 
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 authurl = "https://uncommon.commercelayer.io/oauth/token?"
 
 payload = json.dumps({
