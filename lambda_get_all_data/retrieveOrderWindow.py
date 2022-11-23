@@ -15,7 +15,7 @@ def formatData(allOrders, data, maxDate):
 
     Returns:
         allOrders (dict): Dictionary of all orders
-        exitCode (int): -1 if finished, 1 if new page is required    
+        exitCode (int): -1 if max date reached, 1 if another paeg of orders to retrieve  
         """
     orderList = data['data']
 
@@ -59,11 +59,16 @@ def formatData(allOrders, data, maxDate):
     return allOrders, exitCode
     
 
-
-# Function to make API call to retrieve Billing Info
 def retrieveAddressInfo(relationships, arg):
     '''
-    Arg is 'shipping_address' or 'billing_address'
+    Function to make API call to retrieve billing or shipping info
+
+    Args:
+        relationships (dict): Relationships dictionary from order data
+        arg (str): 'billing_address' or 'shipping_address'
+
+    Returns:
+        addressInfo (dict): Dictionary of address info
     
     '''
     url = relationships[arg]['links']['related']
@@ -83,8 +88,17 @@ def retrieveAddressInfo(relationships, arg):
         return 'No ' + arg.replace('_', ' ') + ' provided'
 
 
-# Function to make API call to line_items
 def retrieveLineItems(relationships):
+    """
+    Function to make API call to retrieve line items
+
+    Args:
+        relationships (dict): Relationships dictionary from order data
+
+    Returns:
+        unitDescription (str): String of all line items
+
+    """
     url = relationships['line_items']['links']['related']
     
     payload={}
@@ -108,6 +122,15 @@ def retrieveLineItems(relationships):
 
 # Function to extract line_item data
 def extractLineItemData(line_item):
+    """
+    Function to extract line item data
+
+    Args:
+        line_item (dict): Dictionary of line item data
+
+    Returns:
+        item_data (str): String of line item data
+    """
     item_data = {}
     
     item_data['id'] = line_item['id']
@@ -161,6 +184,7 @@ def retrieveOrderWindow(orderWindow, subdomain, authToken):
     allOrders = {}
     pageNumber = 0
 
+    # Loop through all pages of orders
     while 1:
         urlDict = data['links']
 
