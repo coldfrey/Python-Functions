@@ -1,7 +1,6 @@
 import json
 import os
 
-
 import requests
 from dotenv import load_dotenv
 
@@ -14,16 +13,11 @@ payload = json.dumps({
   "client_secret": os.getenv('COMMERCE_LAYER_CLIENT_SECRET')
 })
 
-print(payload)
-
 headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 }
 
 authResponse = requests.request("POST", authurl, headers=headers, data=payload)
-print(authResponse.json())
-
 
 authToken = json.loads(authResponse.text)['access_token']
-print(authToken)
