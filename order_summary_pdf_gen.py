@@ -111,7 +111,7 @@ class CustomPDF(FPDF):
 def create_pdf(orderID, subdomain, authToken):
     pdf = CustomPDF()
     data = retrieveSpecificOrder(orderID, subdomain, authToken)
-    
+    print(data["OrderDate"])
     # Create the special value {nb}
     pdf.alias_nb_pages()
     pdf.set_font('Times', '', 12)
