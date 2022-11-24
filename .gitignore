@@ -1,2 +1,5 @@
 
 *.pyc
+
+/lambda_get_all_data/*
+!/lambda_get_all_data/*.py
