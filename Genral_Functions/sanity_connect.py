@@ -21,7 +21,7 @@ import uncommonClasses
 load_dotenv()
 api_key = os.getenv('SANITY_API_KEY')
 # datasets: production | uncommon (uncommon is a test dataset)
-dataset = 'production' # whilst we test the code let's use the uncommon dataset
+dataset = 'test' # whilst we test the code let's use the uncommon dataset
 
 # Set the API endpoints
 api_endpoint_query = 'https://9zkzbvc9.api.sanity.io/v1/data/query/%s' % dataset
@@ -137,14 +137,15 @@ def getNAColorRef():
   response = response.json()
   # print(json.dumps(response, indent=2, sort_keys=True))
 
-  # find the NA color
+  # # find the NA color
   for result in response['result']:
     if result['name']['en'] == 'N/A':
       print("NA Color found: " + result['_id'])
       return result['_id']
 
-  # convert each result to a size object
+  # # convert each result to a size object
   sanityColor = uncommonClasses.Color(response['result'][0]['name']['en'], reference=response['result'][0]['_id'])
+
 
   return sanityColor.reference
 
