@@ -100,8 +100,16 @@ class Product:
     if reference is not None:
       self.id = 'product-' + seededKey(self.reference)
       self.key = 'product-' + seededKey(self.reference)
-    if price != '':
-      self.price = price
+    if (price != None and price != ''):
+      for i in range(len(price)):
+        try:
+          priceNum = float(price)
+        except:
+          price = price[1:]
+          priceNum = -1
+        if priceNum > 0.01:
+          self.price = int(priceNum*100)
+          break
     else:
       self.price = None
     if taxons is not None:
@@ -235,6 +243,7 @@ class Variant:
     # lead_time,
     size = Size("One Size", "Unisex"), 
     colour = None,
+    composition = ""
     ):
     self.sku = sku
     self.barcode = barcode
@@ -243,7 +252,7 @@ class Variant:
       'en': ""
     }
     self.composition = {
-      'en': ""
+      'en': composition
     }
     self.size = size # this is normally a reference to a size object
     # self.colour = # reference to colour object
@@ -290,16 +299,22 @@ class Variant:
 
 
 class SKU:
-    def __init__(self, sku, price, name):
-        self.sku = sku
-        # check price is an integer or reject the init
-        if isinstance(price, int):
-          self.price = price
-        else:
-          self.price = None
-          print('Price must be an integer')
-        self.name = name
-        self.id = seededKey('sku-' + self.sku)
+  def __init__(self, sku, price, name):
+      self.sku = sku
+      # check price is an integer or reject the init
+      if isinstance(price, int):
+        self.price = price
+      else:
+        self.price = None
+        print('Price must be an integer')
+      self.name = name
+      self.id = seededKey('sku-' + self.sku)
+      self.skuId = ''
+      self.priceId = ''
+  def setPriceId(self, priceId):
+      self.priceId = priceId
     
-    def __str__(self):
-        return f'{self.sku} {self.price} {self.name}'
+  def setSkuId(self, skuId):
+      self.skuId = skuId
+  def __str__(self):
+      return f'{self.sku} {self.price} {self.name}'

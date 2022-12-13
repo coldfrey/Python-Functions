@@ -73,7 +73,8 @@ headers = {
 # }
 
 
-AllTaxons = importCSV.importTaxons('EPU2.csv')
+# AllTaxons = importCSV.importTaxons('EPU2.csv')
+AllTaxons = importCSV.importTaxons('TCS1.csv')
 
 #print all taxons
 # print(AllTaxons)
@@ -231,7 +232,7 @@ def createOrUpdateSizes(sizes):
   response = response.json()
   print(json.dumps(response, indent=2, sort_keys=True))
 
-# createOrUpdateSizes(sizes)
+createOrUpdateSizes(sizes)
 
 # create or replace all variants
 def createOrUpdateVariants(Taxons):
@@ -271,7 +272,7 @@ def createOrUpdateVariants(Taxons):
   response = response.json()
   print(json.dumps(response, indent=2, sort_keys=True))
 
-# createOrUpdateVariants(AllTaxons)
+createOrUpdateVariants(AllTaxons)
 
 # create or replace all products
 def createOrUpdateProducts(Taxons):
@@ -353,4 +354,4 @@ def addVariantsToProducts(Taxons):
   response = response.json()
   print(json.dumps(response, indent=2, sort_keys=True))
 
-# addVariantsToProducts(AllTaxons)
+addVariantsToProducts(AllTaxons)

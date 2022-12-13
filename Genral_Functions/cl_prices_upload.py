@@ -1,6 +1,7 @@
 import json
 import os
 from dotenv import load_dotenv
+from time import sleep
 
 
 import requests
@@ -53,7 +54,7 @@ headers = {
 }
 
 
-allTaxons = importCSV.importTaxons('EPU2.csv')
+allTaxons = importCSV.importTaxons('TCS1.csv')
 
 
 # get the list of SKUs with associated variant names
@@ -107,14 +108,105 @@ def addSKUs(SKUs):
             }
         }
 
-        # Make the request
-        response = requests.post(
-            '%s/skus' % api_endpoint, headers=headers, data=json.dumps(data))
+    # Make the request
+    response = requests.post('%s/skus' % api_endpoint,
+                             headers=headers, data=json.dumps(data))
 
-        # Print the response
-        print(response)
+    # Print the response
+    print(response)
 
-# addSKUs(skuList)
+
+addSKUs(skuList)
+
+
+def getPricesFromPriceList(id, tag=None):
+    response = requests.get('%s/price_lists/%s/prices' %
+                            (api_endpoint, id), headers=headers)
+    # test we get the first page (10 items)
+    priceIDs = []
+    for price in response.json()['data']:
+        # print(price['attributes']['sku_code'])
+        # print(price['id'])
+        if tag != None:
+            if tag in price['attributes']['sku_code']:
+                priceIDs.append((price['attributes']['sku_code'], price['id']))
+        else:
+            priceIDs.append((price['attributes']['sku_code'], price['id']))
+        # print(price['attributes']['amount_cents'])
+        # print(price['attributes']['compare_at_amount_cents'])
+        # print("")
+    # work out how many pages there are from the meta data
+    pages = response.json()['meta']['page_count']
+    for i in range(2, pages + 1):
+        response = requests.get('%s/price_lists/%s/prices?page=%s' %
+                                (api_endpoint, id, i), headers=headers)
+        for price in response.json()['data']:
+            # print(price['attributes']['sku_code'])
+            # print(price['id'])
+            if tag != None:
+                if tag in price['attributes']['sku_code']:
+                    priceIDs.append(
+                        (price['attributes']['sku_code'], price['id']))
+            else:
+                priceIDs.append((price['attributes']['sku_code'], price['id']))
+            # print(price['attributes']['amount_cents'])
+            # print(price['attributes']['compare_at_amount_cents'])
+            # print("")
+    return priceIDs
+
+
+def deletePrice(priceID):
+    response = requests.delete(
+        '%s/prices/%s' % (api_endpoint, priceID), headers=headers, data=json.dumps({}))
+    # Print the response
+    print(response)
+
+# for price in getPricesFromPriceList('AlnOyCbYAL', 'TCS'):
+#   print('deleting price for ' + price[0])
+#   deletePrice(price[1])
+
+
+def getSkusFromSkuList(tag=None):
+    response = requests.get('%s/skus' % (api_endpoint), headers=headers)
+    # test we get the first page (10 items)
+    skuIDs = []
+    for sku in response.json()['data']:
+        # print(sku['attributes']['code'])
+        # print(sku['id'])
+        if tag != None:
+            if tag in sku['attributes']['code']:
+                skuIDs.append((sku['attributes']['code'], sku['id']))
+        else:
+            skuIDs.append((sku['attributes']['code'], sku['id']))
+        # print(sku['attributes']['name'])
+        # print("")
+    # work out how many pages there are from the meta data
+    pages = response.json()['meta']['page_count']
+    for i in range(2, pages + 1):
+        response = requests.get('%s/skus?page=%s' %
+                                (api_endpoint, i), headers=headers)
+        for sku in response.json()['data']:
+            # print(sku['attributes']['code'])
+            # print(sku['id'])
+            if tag != None:
+                if tag in sku['attributes']['code']:
+                    skuIDs.append((sku['attributes']['code'], sku['id']))
+            else:
+                skuIDs.append((sku['attributes']['code'], sku['id']))
+            # print(sku['attributes']['name'])
+            # print("")
+    return skuIDs
+
+
+def deleteSku(skuID):
+    response = requests.delete(
+        '%s/skus/%s' % (api_endpoint, skuID), headers=headers, data=json.dumps({}))
+    # Print the response
+    print(response)
+
+# for sku in getSkusFromSkuList('TCS'):
+#   print('deleting SKU ' + sku[0])
+#   deleteSku(sku[1])
 
 
 def addPrices(SKUs):

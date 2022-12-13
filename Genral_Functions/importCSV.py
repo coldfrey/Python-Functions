@@ -8,7 +8,8 @@ from uncommonClasses import Product, Size, Taxon, Variant
 # import numpy as np
 # from sanity_connect import AllTaxons
 
-CATALOGNAME = "ENV"
+# CATALOGNAME = "ENV"
+CATALOGNAME = "TCS"
 
 def checkForTBC(string):
   if (string == 'TBC' or string == '' or string == False):
@@ -62,18 +63,18 @@ def generateProductObjects(inputCSV):
   for product in unique_products:
     # check if has SKU
     hasVariant = False
-    ref = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Product SKU'].iloc[0]
+    ref = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na = False), 'Product SKU'].iloc[0]
     if not pd.isna(ref):
       ref = str(ref)
     else:
-      ref = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Product SKU'].iloc[1]
+      ref = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na = False), 'Product SKU'].iloc[1]
       hasVariant = True
     
-    bar = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Barcode EAN'].iloc[0]
+    bar = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na = False), 'Barcode EAN'].iloc[0]
     if not pd.isna(bar):
       bar = str(bar)
     else:
-      bar = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Barcode EAN'].iloc[1]
+      bar = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na = False), 'Barcode EAN'].iloc[1]
  
     # print(comp)
     product = Product(
@@ -84,13 +85,13 @@ def generateProductObjects(inputCSV):
       (CATALOGNAME.lower() + "-" + product.lower()) .replace(' ', '-'),
       # Reference - note that this will be 'P-' + the first variant sku 
       reference = 'P-' + ref,
-      price = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Price'].iloc[0]),
-      composition = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Composition'].iloc[0]),
-      coo = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'COO'].iloc[0]),
-      moq = makeInt(checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'MOQ'].iloc[0])),
-      oqi = makeInt(checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'OQI'].iloc[0])),
+      price = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na = False), 'Price'].iloc[0]),
+      composition = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na=False), 'Composition'].iloc[0]),
+      coo = checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na=False), 'COO'].iloc[0]),
+      moq = makeInt(checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na=False), 'MOQ'].iloc[0])),
+      oqi = makeInt(checkForTBC(product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na=False), 'OQI'].iloc[0])),
       barcode = makeInt(bar),
-      taxons = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product), 'Taxons'].iloc[0],
+      taxons = product_upload_df.loc[product_upload_df['Product Name'].str.contains(product, na=False), 'Taxons'].iloc[0],
     )
     if not hasVariant:
       variant = Variant(
@@ -154,6 +155,8 @@ def generateVariantObjects(inputCSV):
       makeInt(product_upload_df.loc[product_upload_df['Product SKU'].str.contains(variant, na=False), 'Barcode EAN'].iloc[0]),
       # size
       size=Size(size, size_type = checkType(product_name)),
+      #composition
+      composition = checkForTBC(product_upload_df.loc[product_upload_df['Product SKU'].str.contains(variant, na=False), 'Composition'].iloc[0]),
     )
     variant_objects.append(variant)    
   return variant_objects
@@ -192,17 +195,18 @@ def importTaxons(CSVPath):
   return AllTaxons
 
 if __name__ == "__main__":
-  AllTaxons = generateTaxonObjects('EPU2.csv')
+  AllTaxons = generateTaxonObjects('TCS1.csv')
   # print("first taxon: ")
   # print(AllTaxons[0])
-  AllProducts = generateProductObjects('EPU2.csv')
+  AllProducts = generateProductObjects('TCS1.csv')
   # print("first product: ")
   # print(AllProducts[0])
-  AllVariants = generateVariantObjects('EPU2.csv')
+  AllVariants = generateVariantObjects('TCS1.csv')
   # print("first variant: ")
   # print(AllVariants[2])
   AllTaxons = combineObjects(AllTaxons, AllProducts, AllVariants)
   print("first taxon: ")
   print(AllTaxons[0].products[0])
   print("second taxon: ")
+  print(AllTaxons[1].products[0])
   # print(AllTaxons[1].products)
