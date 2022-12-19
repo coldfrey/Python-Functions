@@ -8,7 +8,7 @@ import requests
 api_key = 'skdvPrsX0H14MCyNQhgb1Gkz92AVOAnfsKubLgRyG88JUtNINPJIoxj23ijMI1ffQZgckXnzSNztTzVX80zgq7G7J3rQaPKbo0a4XQl2XmWUB9wLc7lLjW7plojlBRG9S7k41SdlrONACACavE418Wf8yDBi54KdzYh35WeA2tCDhRFKzR58'
 
 # datasets: production | uncommon (uncommon is a test dataset)
-dataset = 'uncommon' # whilst we test the code let's use the uncommon dataset
+dataset = 'test' # whilst we test the code let's use the uncommon dataset
 
 
 # Set the API endpoints

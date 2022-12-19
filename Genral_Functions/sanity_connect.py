@@ -21,7 +21,7 @@ import uncommonClasses
 load_dotenv()
 api_key = os.getenv('SANITY_API_KEY')
 # datasets: production | uncommon (uncommon is a test dataset)
-dataset = 'production' # whilst we test the code let's use the uncommon dataset
+dataset = 'test' # whilst we test the code let's use the uncommon dataset
 
 # Set the API endpoints
 api_endpoint_query = 'https://9zkzbvc9.api.sanity.io/v1/data/query/%s' % dataset
